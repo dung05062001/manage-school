@@ -4,33 +4,26 @@ import java.time.LocalDate;
 
 public class members {
 
-	private int ID;
 	private String firstname = "";
 	private String lastname = "";
 	private String address = "";
 	private LocalDate birthday;
 	private String phone = "";
+	private String term = "";
 
 	public members() {
-
 	}
 
-	public members(int iD, String firstname, String lastname, String address, LocalDate birthday, String phone) {
-		this.ID = iD;
+	public members(String firstname, String lastname, String address, LocalDate birthday, String phone, String term) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.address = address;
 		this.birthday = birthday;
 		this.phone = phone;
+		this.term = term;
+		
 	}
 
-	public int getID() {
-		return ID;
-	}
-
-	public void setID(int iD) {
-		ID = iD;
-	}
 
 	public String getFirstname() {
 		return firstname;
@@ -73,10 +66,20 @@ public class members {
 	}
 
 	
-	@Override
-	public String toString() {
-		return "members [ID=" + ID + ", firstname=" + firstname + ", lastname=" + lastname + ", address=" + address
-				+ ", birthday=" + birthday + ", phone=" + phone + "]";
+	
+	public String getTerm() {
+		return term;
 	}
 
+	public void setTerm(String term) {
+		this.term = term;
+	}
+
+	@Override
+	public String toString() {
+		return "members [firstname=" + firstname + ", lastname=" + lastname + ", address=" + address + ", birthday="
+				+ birthday + ", phone=" + phone + ", term=" + term + "]";
+	}
+
+	
 }

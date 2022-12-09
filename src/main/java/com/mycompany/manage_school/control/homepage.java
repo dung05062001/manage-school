@@ -2,6 +2,7 @@ package com.mycompany.manage_school.control;
 
 import java.util.Scanner;
 
+import com.mycompany.manage_school.control.Admin.Home;
 import com.mycompany.manage_school.factory.scannerFactory;
 
 public class homepage {
@@ -21,7 +22,8 @@ public class homepage {
 		System.out.println("enter 2 : Check Point");
 		System.out.println("enter 3 : View Posts");
 		System.out.println("enter 4: view Time table");
-		System.out.println("enter 5: exit");
+		System.out.println("enter 5: add information of student by admin");
+		System.out.println("enter 6: exit");
 		
 		System.out.println("@input: your choose ");
 		int choose = scanner.nextInt();
@@ -35,6 +37,11 @@ public class homepage {
 		case 1:
 			register register = new register();
 			register.registers();
+			break;
+			
+		case 5:
+			Home homeAdmin = new Home();
+			homeAdmin.function();
 			break;
 			
 		default:

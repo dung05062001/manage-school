@@ -165,6 +165,7 @@ public class register {
 			}
 			else{
 				System.out.println("register wrong , Please re-enter!");
+				registers();
 			}
 		}
 	}
@@ -213,7 +214,7 @@ public class register {
 		System.out.println("confirm(3)");
 		int confirm = scanner.nextInt();
 		if (confirm == 3) {
-			System.out.println("register succes!");
+			scanner.nextLine();
 			return "Register";
 		} else if (confirm == 0) {
 			String option = option();

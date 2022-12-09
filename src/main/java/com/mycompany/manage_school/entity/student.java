@@ -8,19 +8,26 @@ public class student extends members{
 	private String name_mother = "";
 	private String phone_father = "";
 	private String phone_mother = "";
-	private String term = "";
+	private String Classes = "";
 	
-	public student() {
-	}
-	
-	public student(int iD, String firstname, String lastname, String address, LocalDate birthday, String phone,
-			 String name_father, String name_mother, String phone_father, String phone_mother, String term) {
-		super(iD, firstname, lastname, address, birthday, phone);
+	public student(String name_father, String name_mother, String phone_father, String phone_mother, String Classes) {
+		
 		this.name_father = name_father;
 		this.name_mother = name_mother;
 		this.phone_father = phone_father;
 		this.phone_mother = phone_mother;
-		this.term = term;
+		this.Classes = Classes;
+	}
+	
+	public student(String firstname, String lastname, String address, LocalDate birthday, String phone, String term,
+			 String name_father, String name_mother, String phone_father, String phone_mother, String Classes) {
+		super(firstname, lastname, address, birthday, phone, term);
+		this.name_father = name_father;
+		this.name_mother = name_mother;
+		this.phone_father = phone_father;
+		this.phone_mother = phone_mother;
+		this.Classes = Classes;
+		
 	}
 
 	public String getName_father() {
@@ -56,21 +63,19 @@ public class student extends members{
 	}
 
 	
-	public String getTerm() {
-		return term;
+	public String getClasses() {
+		return Classes;
 	}
 
-	public void setTerm(String term) {
-		this.term = term;
+	public void setClasses(String classes) {
+		Classes = classes;
 	}
 
 	@Override
 	public String toString() {
 		return "student [name_father=" + name_father + ", name_mother=" + name_mother + ", phone_father=" + phone_father
-				+ ", phone_mother=" + phone_mother + ", getID()=" + getID() + ", getFirstname()=" + getFirstname()
-				+ ", getLastname()=" + getLastname() + ", getAddress()=" + getAddress() + ", getBirthday()="
-				+ getBirthday() + ", getPhone()=" + getPhone()  + ", toString()="
-				+ super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
+				+ ", phone_mother=" + phone_mother + ", Classes=" + Classes + "]";
 	}
 
+	
 }
