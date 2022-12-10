@@ -2,6 +2,7 @@ package com.mycompany.manage_school.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -67,11 +68,16 @@ public class DAO {
 //  get connect to SQL server
 		Connection connect = connectSqlServer();
 		
+		
+		int idOfInformationCurrent =  takeIdBiggestOfInformation();
+		
 //	get statement
 		try {
 			Statement statement = connect.createStatement();
-			
 			int result = statement.executeUpdate(queryMember);
+			if(result <= 0) {
+				return false;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -80,7 +86,7 @@ public class DAO {
 //		insert follow category (student or teacher)
 		String QueryFollowCategory = "";
 		if(member instanceof student) {
-			QueryFollowCategory = "insert into student values ('"+ ((student) member).getName_father() 
+			QueryFollowCategory = "insert into student values ("+ (idOfInformationCurrent + 1) +",'"+ ((student) member).getName_father() 
 					+"', '"+((student) member).getPhone_father()+"', '"+ ((student) member).getName_mother()
 					+"', '"+ ((student) member).getPhone_mother() +"', '"+ ((student) member).getClasses() +"')";
 		}
@@ -100,5 +106,27 @@ public class DAO {
 				
 				return false;
 
+	}
+	
+//	 take id biggest (id auto increase) of Information
+//	 purpose is insert into the ID of student and teacher
+	private static int takeIdBiggestOfInformation() {
+		String query = "select TOP 1 ID from Information	\r\n"
+				+ "ORDER BY ID DESC";
+		
+		Connection connect = connectSqlServer();
+		try {
+			Statement statement = connect.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			if(result != null) {
+				while(result.next()) {
+					int ID = result.getInt("ID");
+					return ID;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

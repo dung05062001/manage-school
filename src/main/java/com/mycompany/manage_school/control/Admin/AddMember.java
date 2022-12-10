@@ -11,11 +11,11 @@ import com.mycompany.manage_school.entity.student;
 import com.mycompany.manage_school.factory.scannerFactory;
 import com.mycompany.manage_school.model.DAO;
 
-public class AddStudent {
+public class AddMember {
 
 	private Scanner scanner;
 
-	public AddStudent() {
+	public AddMember() {
 
 		scannerFactory factory = new scannerFactory();
 		scanner = factory.getScanner();
@@ -63,6 +63,7 @@ public class AddStudent {
 			a.viewLayout();
 		} else if (option == 1) {
 		} else if (option == 2) {
+			System.out.println("input continue : ");
 			return scanner.nextLine();
 		} else {
 			System.out.println("wrong , Please re-enter!");
@@ -78,7 +79,6 @@ public class AddStudent {
 		System.out.println("							REGISTER");
 
 		System.out.println("				   Option (0)");
-
 
 		System.out.println("				  first name :");
 		String firstname = scanner.nextLine();
@@ -152,7 +152,7 @@ public class AddStudent {
 				return;
 			}
 		}
-		
+
 		System.out.println("			nhiem ky: ");
 		String term = scanner.nextLine();
 		if (term.equals("0")) {
@@ -163,50 +163,59 @@ public class AddStudent {
 				return;
 			}
 		}
-		
-		
-		
-		LocalDate birthday = LocalDate.of(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
+
+		LocalDate birthday = null;
+		try {
+			birthday = LocalDate.of(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("wrong !, birthday is not valid. please re-enter");
+			AddMember(category);
+		}
 
 		members member = null;
 		String categoryOfRegister = "";
-		if(category.equals("student")) {
-			
-			student InforStudentPrivate =  registerStudent();
-			if(InforStudentPrivate != null) {
-				
+		if (category.equals("student")) {
+
+			student InforStudentPrivate = registerStudent();
+			if (InforStudentPrivate != null && birthday != null) {
+
 				categoryOfRegister = "student";
-				
+
 //		create object student 
-				 member = new student(firstname, lastname, address, birthday, phone, term  , 
-						InforStudentPrivate.getName_father() , InforStudentPrivate.getPhone_father()
-						, InforStudentPrivate.getName_mother() , InforStudentPrivate.getPhone_mother() 
-						, InforStudentPrivate.getClasses());
+				member = new student(firstname, lastname, address, birthday, phone, term,
+						InforStudentPrivate.getName_father(), InforStudentPrivate.getPhone_father(),
+						InforStudentPrivate.getName_mother(), InforStudentPrivate.getPhone_mother(),
+						InforStudentPrivate.getClasses());
 			}
-		}
-		else if(category.equals("teacher")){
-			
+		} else if (category.equals("teacher")) {
+
 			categoryOfRegister = "teacher";
 //			create object teacher
-			
+
 		}
-		String resultConfirm = confirm();
-		if (resultConfirm.equals("Register") && member != null) {
+
+		if (member != null) {
+
+			String resultConfirm = confirm();
+			if (resultConfirm.equals("Register")) {
 
 //			check data user input , return true if valid and register success, otherwise false
-			boolean result = DAO.RegisterMemberByAdmin(member, 1);
-			if (result) {
-				System.out.println("register succes!");
-			} else {
-				System.out.println("register wrong , Please re-enter!");
-				AddMember(category);
+				boolean result = DAO.RegisterMemberByAdmin(member, 1);
+				if (result) {
+					System.out.println("register succes!");
+					homepage HomeAlterRegisterSucces = new homepage();
+					HomeAlterRegisterSucces.viewLayout();
+				} else {
+					System.out.println("register wrong , Please re-enter!");
+					AddMember(category);
+				}
 			}
 		}
 	}
 
-	
 	private student registerStudent() {
-		
+
 //		name father
 		System.out.println("				  Name Father :");
 		String NameFather = scanner.nextLine();
@@ -219,19 +228,17 @@ public class AddStudent {
 			}
 		}
 
-		
 		System.out.println("				  Phone Father :");
 		String PhoneFather = scanner.nextLine();
 		if (PhoneFather.equals("0")) {
 			String option = option();
 			if (option != null) {
-				PhoneFather= option;
+				PhoneFather = option;
 			} else {
 				return null;
 			}
 		}
-		
-		
+
 		System.out.println("				 Name Mother :");
 		String NameMother = scanner.nextLine();
 		if (NameMother.equals("0")) {
@@ -242,7 +249,7 @@ public class AddStudent {
 				return null;
 			}
 		}
-		
+
 		System.out.println("				 Phone Mother :");
 		String PhoneMother = scanner.nextLine();
 		if (PhoneMother.equals("0")) {
@@ -253,7 +260,7 @@ public class AddStudent {
 				return null;
 			}
 		}
-		
+
 		System.out.println("				 Class :");
 		String clases = scanner.nextLine();
 		if (clases.equals("0")) {
@@ -264,12 +271,11 @@ public class AddStudent {
 				return null;
 			}
 		}
-		
+
 		student students = new student(NameFather, PhoneFather, NameMother, PhoneMother, clases);
 		return students;
 	}
-	
-	
+
 	private String confirm() {
 
 		System.out.println("confirm(3)");
@@ -286,7 +292,7 @@ public class AddStudent {
 				return "Register";
 			}
 
-//			if Admin choose option 'continue ' and enter != 3 to confirm , after will re-confirm
+//			if Admin choose option 'continue ' of function Option and enter != 3 to confirm , after will re-confirm
 			else if (option != null && !option.equals("3")) {
 				confirm();
 			}
