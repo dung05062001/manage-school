@@ -129,4 +129,32 @@ public class DAO {
 		}
 		return 0;
 	}
+	
+	
+	public static boolean LogAdminManager(String username , String password){
+		System.out.println("#input : ");
+		System.out.println(username +","+ password);
+		Connection connect = connectSqlServer();
+		String query = "select * from adminManager\r\n"
+				+ "where username = '"+ username +"'";
+		try {
+			Statement statement = connect.createStatement();
+			ResultSet AccountAdminManager = statement.executeQuery(query);
+			if(AccountAdminManager != null) {
+				while(AccountAdminManager.next()) {
+					String passwordOfSQL = AccountAdminManager.getString("password");
+					
+					System.out.println("password in sql :" + passwordOfSQL);
+//					so sánh pass của input và pass trong database
+					if(password.equals(passwordOfSQL.strip())) {
+						return true;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
