@@ -1,9 +1,10 @@
-package com.mycompany.manage_school.control;
+package com.mycompany.manage_school.control.user;
 
 import java.util.Scanner;
 
 import javax.sql.rowset.serial.SQLOutputImpl;
 
+import com.mycompany.manage_school.control.homepage;
 import com.mycompany.manage_school.entity.account;
 import com.mycompany.manage_school.exception.PasswordException;
 import com.mycompany.manage_school.exception.UsernameException;
@@ -72,7 +73,8 @@ public class login {
 			return null;
 		}
 		if(username.equals("1")) {
-			
+			changePassword changePassword = new changePassword();
+			changePassword.functions();
 		}
 		if(username.equals("2")) {
 			register register = new register();
@@ -87,4 +89,9 @@ public class login {
 		return user;
 	}
 
+	public static void main(String[] args) {
+		login login = new login();
+		login.handleLog();
+	}
+	
 }

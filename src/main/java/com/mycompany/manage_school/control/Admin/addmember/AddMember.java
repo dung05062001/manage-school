@@ -1,10 +1,12 @@
-package com.mycompany.manage_school.control.Admin;
+package com.mycompany.manage_school.control.Admin.addmember;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import javax.sound.midi.Soundbank;
+
 import com.mycompany.manage_school.control.homepage;
-import com.mycompany.manage_school.control.login;
+import com.mycompany.manage_school.control.Admin.Home;
 import com.mycompany.manage_school.entity.account;
 import com.mycompany.manage_school.entity.members;
 import com.mycompany.manage_school.entity.student;
@@ -22,10 +24,10 @@ public class AddMember {
 	}
 
 	public void function() {
-
-		System.out.println("home(0)");
+		System.out.println("     REGISTER STUDENT BY ADMIN MANAGER");
+		System.out.println("homepage admin(0)");
 		System.out.println("back(1)");
-		System.out.println("Add information of student(2)");
+		System.out.println("Register information for student(2)");
 
 		System.out.println("   Enter choose of you : ");
 		int choose = scanner.nextInt();
@@ -33,7 +35,7 @@ public class AddMember {
 		switch (choose) {
 		case 0:
 			Home home = new Home();
-			home.function();
+			home.;
 			break;
 		case 1:
 //			call function of register

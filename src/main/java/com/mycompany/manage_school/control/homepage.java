@@ -43,7 +43,7 @@ public class homepage {
 			
 		case 5:
 			Home homeAdmin = new Home();
-			homeAdmin.function();
+			homeAdmin.functionGeneral();
 			break;
 			
 		default:

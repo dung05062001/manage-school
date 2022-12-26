@@ -2,22 +2,22 @@ package com.mycompany.manage_school.control.Admin.functionLog;
 
 import java.util.Scanner;
 
-import javax.sound.midi.Soundbank;
-
 import com.mycompany.manage_school.control.homepage;
 import com.mycompany.manage_school.control.Admin.Home;
 import com.mycompany.manage_school.factory.scannerFactory;
 import com.mycompany.manage_school.model.DAO;
 
-public class logAdminManager {
+public class logAdminAccountCensorship {
 
 	private Scanner scanner;
-
-	public logAdminManager() {
-
+	
+	public logAdminAccountCensorship() {
+		
+		scannerFactory scannerFactory = new scannerFactory();
 		scanner = scannerFactory.getScanner();
 	}
-
+	
+	
 	public void function() {
 
 		System.out.println("back(0)");
@@ -50,13 +50,12 @@ public class logAdminManager {
 
 			break;
 
-//			log admin manager
+//			log admin account censorship
 		case 3:
-//			gọi function log admin manager
-			boolean result = logAdminManager();
+			boolean result = logAdminAccountCensorship();
 			if(result) {
-				Home homeOfAdmin = new Home();
-				homeOfAdmin.functionAdminManager();
+				Home homeofAdmin = new Home();
+				homeofAdmin.functionAdminAccountCensorship();
 			}
 			break;
 
@@ -65,16 +64,16 @@ public class logAdminManager {
 		}
 	}
 
-	private boolean logAdminManager() {
+	private boolean logAdminAccountCensorship() {
 
-		System.out.println("      LOG ADMIN MANAGER");
+		System.out.println("      LOG ADMIN ACCOUNT CENSORSHIP ");
 		System.out.println("enter username :");
 		String username = scanner.nextLine();
 
 		System.out.println("enter password : ");
 		String password = scanner.nextLine();
 
-		boolean resultLogAdminManager = DAO.LogAdminManager(username, password);
+		boolean resultLogAdminManager = DAO.logAdminDepartment(username, password, "account censorship");
 		System.out.println(resultLogAdminManager);
 		if (resultLogAdminManager) {
 			System.out.println("@login succes!");
@@ -86,23 +85,17 @@ public class logAdminManager {
 			int chooses = scanner.nextInt();
 			scanner.nextLine();
 
-//			quay về page chính của log admin manager
+//			quay về page chính của log admin account censorship
 			if (chooses == 0) {
-				logAdminManager logadmin = new logAdminManager();
+				logAdminAccountCensorship logadmin = new logAdminAccountCensorship(); 
 				logadmin.function();
 			} else {
-				logAdminManager();
+				logAdminAccountCensorship();
 			}
 			return false;
 		}
 		
 	}
+	
 
-	public static void main(String[] args) {
-		
-		logAdminManager log = new logAdminManager();
-		log.function();
-		
-		
-	}
 }

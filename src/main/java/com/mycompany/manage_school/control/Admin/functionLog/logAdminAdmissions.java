@@ -2,24 +2,22 @@ package com.mycompany.manage_school.control.Admin.functionLog;
 
 import java.util.Scanner;
 
-import javax.sound.midi.Soundbank;
-
 import com.mycompany.manage_school.control.homepage;
 import com.mycompany.manage_school.control.Admin.Home;
 import com.mycompany.manage_school.factory.scannerFactory;
 import com.mycompany.manage_school.model.DAO;
 
-public class logAdminManager {
+public class logAdminAdmissions {
 
 	private Scanner scanner;
 
-	public logAdminManager() {
+	public logAdminAdmissions() {
 
+		scannerFactory scannerFactory = new scannerFactory();
 		scanner = scannerFactory.getScanner();
 	}
 
-	public void function() {
-
+	public void functions() {
 		System.out.println("back(0)");
 		System.out.println("homepage of admin(1)");
 		System.out.println("homepage school(2)");
@@ -29,20 +27,20 @@ public class logAdminManager {
 		scanner.nextLine();
 
 		switch (choose) {
-//		quay lại trang trước (trong log của admin)
+//	quay lại trang trước (trong log của admin)
 		case 0:
 			log PageLogOfAdmin = new log();
 			PageLogOfAdmin.function();
 			break;
 
-//		quay lại trang chủ của page admin
+//	quay lại trang chủ của page admin
 		case 1:
 
 			Home homepageOfAdmin = new Home();
-			homepageOfAdmin.functionGeneral();
+			homepageOfAdmin.functionGeneral();;
 			break;
 
-//		quay lại trang chủ của trường
+//	quay lại trang chủ của trường
 		case 2:
 
 			homepage homepageOfSchool = new homepage();
@@ -50,13 +48,12 @@ public class logAdminManager {
 
 			break;
 
-//			log admin manager
+//		log admin account censorship
 		case 3:
-//			gọi function log admin manager
-			boolean result = logAdminManager();
-			if(result) {
-				Home homeOfAdmin = new Home();
-				homeOfAdmin.functionAdminManager();
+			boolean result = logAdminAccountAdmission();
+			if (result) {
+				Home homeofAdmin = new Home();
+				homeofAdmin.functionAdminAddmission();
 			}
 			break;
 
@@ -65,16 +62,16 @@ public class logAdminManager {
 		}
 	}
 
-	private boolean logAdminManager() {
+	private boolean logAdminAccountAdmission() {
 
-		System.out.println("      LOG ADMIN MANAGER");
+		System.out.println("      LOG ADMIN ADMISSION ");
 		System.out.println("enter username :");
 		String username = scanner.nextLine();
 
 		System.out.println("enter password : ");
 		String password = scanner.nextLine();
 
-		boolean resultLogAdminManager = DAO.LogAdminManager(username, password);
+		boolean resultLogAdminManager = DAO.logAdminDepartment(username, password, "admission");
 		System.out.println(resultLogAdminManager);
 		if (resultLogAdminManager) {
 			System.out.println("@login succes!");
@@ -86,23 +83,17 @@ public class logAdminManager {
 			int chooses = scanner.nextInt();
 			scanner.nextLine();
 
-//			quay về page chính của log admin manager
+//		quay về page chính của log admin posts
 			if (chooses == 0) {
-				logAdminManager logadmin = new logAdminManager();
-				logadmin.function();
+				logAdminAdmissions logadmin = new logAdminAdmissions();
+				logadmin.functions();
 			} else {
-				logAdminManager();
+				logAdminAccountAdmission();
 			}
 			return false;
 		}
-		
-	}
 
-	public static void main(String[] args) {
-		
-		logAdminManager log = new logAdminManager();
-		log.function();
-		
-		
 	}
+	
+
 }

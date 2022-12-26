@@ -36,7 +36,7 @@ public class log {
 //			back home page của Admin
 		case 0:
 			Home homeOfAdmin = new Home();
-			homeOfAdmin.function();
+			homeOfAdmin.functionGeneral();
 			break;
 			
 //			back home page của trường 
@@ -48,7 +48,7 @@ public class log {
 		case 2:
 			
 			logAdminManager adminManager = new logAdminManager();
-			
+			adminManager.function();
 			break;
 			
 //			chức năng : log admin duyệt account 

@@ -1,4 +1,4 @@
-package com.mycompany.manage_school.control.Admin;
+package com.mycompany.manage_school.control.Admin.addmember;
 
 import java.util.Scanner;
 
@@ -16,10 +16,10 @@ public class RegisterForMember {
 
 	
 	public void function() {
-		
+		System.out.println("    REGISTER USER BY ADMIN");
 		System.out.println("home(0)");
-		System.out.println("Add Student(1)");
-		System.out.println("Add Teacher(2)");
+		System.out.println("Add Profile Student(1)");
+		System.out.println("Add Profile Teacher(2)");
 		
 		int choose = scanner.nextInt();
 		scanner.nextLine();
@@ -29,8 +29,9 @@ public class RegisterForMember {
 			break;
 			
 		case 1:
+//			register information for student
 			String category = "student";
-			AddStudent addstudent = new AddStudent();
+			AddMember addstudent = new AddMember();
 			addstudent.AddMember(category);
 			break;
 			

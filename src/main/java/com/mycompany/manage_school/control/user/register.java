@@ -1,8 +1,9 @@
-package com.mycompany.manage_school.control;
+package com.mycompany.manage_school.control.user;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import com.mycompany.manage_school.control.homepage;
 import com.mycompany.manage_school.entity.account;
 import com.mycompany.manage_school.entity.members;
 import com.mycompany.manage_school.exception.BirthdayException;
@@ -19,43 +20,17 @@ public class register {
 	private Scanner scanner;
 
 	public register() {
-		scanner = scannerFactory.getScanner();
+		scanner = scannerFactory.getScanner(); 
 	}
 
-	private String option() {
-		System.out.println("				   Home page (0)");
-		System.out.println("				   Login(1)");
-		System.out.println("				   Exit(2)");
-		System.out.println("				   Continue(3)");
-
-		System.out.println("enter choose : ");
-		int option = scanner.nextInt();
-		scanner.nextLine();
-		if (option == 0) {
-			homepage a = new homepage();
-			a.viewLayout();
-		} else if (option == 1) {
-			login log = new login();
-			log.handleLog();
-		} else if (option == 2) {
-		} else if (option == 3) {
-			return scanner.nextLine();
-		} else {
-			System.out.println("wrong , Please re-enter!");
-			option();
-		}
-
-		return null;
-	}
-
+	
 	public void registers() {
 
 		System.out.println("              			-----------------------------------------------------");
 		System.out.println("							REGISTER");
 
 		System.out.println("				   Option (0)");
-
-		System.out.println("				  Username:");
+		System.out.println("				  Username: ");
 		String username = scanner.nextLine();
 		if (username.equals("0")) {
 			String option = option();
@@ -208,6 +183,34 @@ public class register {
 		return false;
 	}
 
+	
+	private String option() {
+		System.out.println("				   Home page (0)");
+		System.out.println("				   Login(1)");
+		System.out.println("				   Exit(2)");
+		System.out.println("				   Continue(3)");
+
+		System.out.println("enter choose : ");
+		int option = scanner.nextInt();
+		scanner.nextLine();
+		if (option == 0) {
+			homepage a = new homepage();
+			a.viewLayout();
+		} else if (option == 1) {
+			login log = new login();
+			log.handleLog();
+		} else if (option == 2) {
+		} else if (option == 3) {
+			return scanner.nextLine();
+		} else {
+			System.out.println("wrong , Please re-enter!");
+			option();
+		}
+
+		return null;
+	}
+
+	
 //	confirm to register (save to database)
 	private String confirm(members studentRegister) {
 
